@@ -9,6 +9,7 @@ class SongsController < ApplicationController
   end
 
   def show
+    @comments = @song.comments.all
     respond_with(@song)
   end
 
