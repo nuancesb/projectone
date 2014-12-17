@@ -15,6 +15,16 @@
   </div>
 
   <div class="field">
+    <p>Please choose you account type</p>    
+    <%= f.radio_button(:role, "artist") %>
+    <%= f.label :role, "Artist" %>
+
+    <%= f.radio_button(:role, "fan", checked: true) %> 
+    <%= f.label :role, "Fan" %>   
+  </div>
+
+
+  <div class="field">
     <%= f.label :password %>
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

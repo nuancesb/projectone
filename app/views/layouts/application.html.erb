@@ -34,7 +34,8 @@
               </ul>
             </li> -->
             <li><%= link_to "Songs", songs_path %></li>
-            <li><%= link_to "Artists", songs_path %></li>
+            <li><%= link_to "Artists", users_path %></li>
+            <li><%= link_to "Fans", users_path %></li>
             <% if current_user %>
               <li><%= current_user.email %></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
