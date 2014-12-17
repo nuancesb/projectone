@@ -1,4 +1,2 @@
-<%= form_for @comment, comments_path(@article) do |f| %>
-  <%= f.text_area :body %>
-  <%= submit_tag "Post comment" %>
-<% end %>
+<%= f.label :comment %>
+<%= f.text_area :comment %>

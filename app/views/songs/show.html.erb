@@ -9,6 +9,22 @@
   <strong>Title:</strong>
   <%= @song.title %>
 </p>
-<%= render @comments %>
+<p>
+
+  <audio controls="controls" source src="<%= @song.song_file.url %>" >      
+   </audio>
+
+</p>
+<% @song.comments.each do |comment| %>
+<%= comment.comment%>
+<%= comment.user.try :email %>
+<% end %>
+
+<%= form_for [@song, @song.comments.new] do |f| %>
+  <%= render partial: 'comments/form', locals: { f: f } %>
+
+  <%= f.submit "Post comment" %>
+<% end %>
+
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>

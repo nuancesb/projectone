@@ -27,6 +27,12 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+      <%= f.label :user_image %><br />
+      <%= f.file_field :user_image %>
+  </div>
+  <%= f.label :remote_user_image_url %>
+  <%= f.text_field :remote_user_image_url %>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
