@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Musicapp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title><%= content_for?(:title) ? yield(:title) : "Musicapp" %></title>
 
-   <div class='login'>
-       <% if current_user %>
-         <%= current_user.email %>
-         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-       <% else %>
-         <%= link_to "Sign In", new_user_session_path %>
-         <%= link_to "Register", new_user_registration_path %>
-       <% end %>
-     </div>
-     <br><%= link_to "Songs", songs_path %><br>
-     <br><%= link_to "Artists", songs_path %><br>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-   
+  <body>
+    <header>
+      <nav>
+        <%= link_to "Songs", songs_path %>
+        <%= link_to "Artists", songs_path %>
+        <%= link_to "Home", root_path %>
+        <% if current_user %>
+          <%= current_user.email %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path %>
+          <%= link_to "Register", new_user_registration_path %>
+        <% end %>
+      </nav>
+    </header>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <nav></nav>
+    </footer> 
     
-     <br><%= link_to "Home", root_path %><br>
-     <p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
-
-<section><%= yield %></section>
-
-</body>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
