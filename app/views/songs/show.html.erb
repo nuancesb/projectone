@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= image_tag @song.user.user_image.url, width: 90 %>
 
 <p>
   <strong>Artist:</strong>
@@ -9,21 +9,18 @@
   <strong>Title:</strong>
   <%= @song.title %>
 </p>
-<p>
 
-  <audio controls="controls" source src="<%= @song.song_file.url %>" >      
-   </audio>
+<audio controls="controls" source src="<%= @song.song_file.url %>"></audio>
 
-</p>
-<% @song.comments.each do |comment| %>
-<%= comment.comment%>
-<%= comment.user.try :email %>
+<% @song.comments.all.each do |comment| %>
+<b><%= comment.comment%></b><br>
+<%= comment.user.try :email %><br><hr>
 <% end %>
 
 <%= form_for [@song, @song.comments.new] do |f| %>
   <%= render partial: 'comments/form', locals: { f: f } %>
 
-  <%= f.submit "Post comment" %>
+  <%= f.submit "Post comment", class: "button expand" %>
 <% end %>
 
 <%= link_to 'Edit', edit_song_path(@song) %> |

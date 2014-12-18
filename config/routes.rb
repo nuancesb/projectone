@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resources :comments 
   end
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :users, only: [:index, :show]
+  
+  resources :users, only: [:index, :show, :destroy]
+
+  get 'artists', to: "users#artists"
+  get 'fans', to: "users#fans"
 
 end

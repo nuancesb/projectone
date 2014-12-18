@@ -1,17 +1,20 @@
-<h1>Users</h1>
+<h1>
+  <% if params[:action] == "fans" %>
+  Fans
+  <% elsif params[:action] == "artists" %>
+  Artists
+  <% else %>
+  All Users
+  <% end %>
+</h1>
 
-<!-- <ul>
-  <%= render @users %>
-</ul -->
-
-
-<% @users.each do |user| %>
+<table> 
+  <% @users.each do |user| %>
   <tr>
-    <td><%= user.try :name %></td>
-     <%= image_tag user.user_image.url, width: 90%>
-
-    <td><%= link_to 'Show', user %></td>
-   <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td><br>
-  </tr>
-<% end %>
+    <td><%= link_to user.name, user_path(user) %></td>
+    <td><%= image_tag user.user_image.url, width: 90 %>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
+      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>

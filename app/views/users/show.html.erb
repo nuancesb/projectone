@@ -2,3 +2,4 @@
   <b>Image:</b>
   <%= image_tag @user.user_image.url %>
 </p>
+<td><%= link_to 'Destroy', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %></td><br

@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -16,7 +17,12 @@
       <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
           <li class="name">
-            <h1><%= link_to "Musicapp", root_path %></h1>
+            <h1>
+              <%= link_to root_path do %>
+                <i class="logo"></i>
+                Musika
+              <% end %>
+            </h1>
           </li>
            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
           <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -35,10 +41,12 @@
             </li> -->
             <li><%= link_to "Songs", songs_path %></li>
             <li><%= link_to "All Users", users_path %></li>
-            <li><%= link_to "Artists", users_path %></li>
-            <li><%= link_to "Fans", users_path %></li>
+            <li><%= link_to "Artists", artists_path %></li>
+            <li><%= link_to "Fans", fans_path %></li>
+          
             <% if current_user %>
-              <li><%= current_user.email %></li>
+              <li class='user_name'><%= current_user.name %></li>
+              <li><%= link_to "edit", edit_user_registration_path %></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "Sign In", new_user_session_path %></li>
@@ -53,10 +61,14 @@
         </section>
       </nav>
     </header>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+    <% if notice || alert %>
+    <div data-alert class="alert-box">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <a href="#" class="close">&times;</a>
+    </div>
+    <% end %>
+    
     <main>
       <%= yield %>
     </main>
@@ -65,6 +77,6 @@
       <nav></nav>
     </footer> 
 
-    <%= javascript_include_tag "application" %>
+
   </body>
 </html>
