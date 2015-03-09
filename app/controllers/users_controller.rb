@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     redirect_to(users_path)
   end
 
-  # Strong params here (if you add a form)
+ 
   def user_params
     params.require(:user).permit(:name, :user_image, :remote_user_image_url)
   end
